@@ -6,15 +6,15 @@
 import pygame
 
 class cAnimSprite(pygame.sprite.Sprite):
-    _start 		= pygame.time.get_ticks()
-    _last_update 	= 0
-    _frame 		= 0
-    draw 		= True
-    _images 	= None
-    _delay 		= None
-    image 		= None
-    rect 		= None
-    static		= False
+    _start       = pygame.time.get_ticks()
+    _last_update = 0
+    _frame       = 0
+    draw         = True
+    _images      = None
+    _delay       = None
+    image        = None
+    rect         = None
+    static       = False
 
     def __init__(self,images,fps=10):
         pygame.sprite.Sprite.__init__(self)
@@ -75,4 +75,3 @@ class cAnimSprite(pygame.sprite.Sprite):
                    return True
 
         return False
-
