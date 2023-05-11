@@ -52,27 +52,27 @@ class cAnimSprite(pygame.sprite.Sprite):
 
         #Incremental move by amount
     def incr_move(self,incrx,incry):
-                self.rect.x += incrx
-                self.rect.y += incry
+        self.rect.x += incrx
+        self.rect.y += incry
 
     def reset_anim(self):
         self.image = images[0]
 
     # @TODO: Check use of this function
-        def out_of_screen(self,width=800,height=600):
-                """
-                        Checks if the sprite is out of the screen
-                """
-                x = self.rect.x
-                y = self.rect.y
-                w = self.rect.width
-                h = self.rect.height
-                
-                if x + w < 0 or \
-                   y + h< 0 or \
-                   x > width or \
-                   y > height:
-                           return True
+    def out_of_screen(self,width=800,height=600):
+        """
+                Checks if the sprite is out of the screen
+        """
+        x = self.rect.x
+        y = self.rect.y
+        w = self.rect.width
+        h = self.rect.height
 
-                return False
+        if x + w < 0 or \
+           y + h< 0 or \
+           x > width or \
+           y > height:
+                   return True
+
+        return False
 
