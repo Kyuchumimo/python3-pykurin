@@ -1,7 +1,7 @@
 #!/usr/bin/python
 #######################
 # Main pykurin entrance
-# @author: Jordi Castells Sala
+# @author: Jordi Castells Sala, Kyuchumimo
 #
 #
 #######################
@@ -171,13 +171,13 @@ INPUT_KEYS_BG = pygame.image.load("backgrounds/squared_paper_wun.png")
 # Function to update the settings menu
 #
 def update_settings_menu_texts():
-	#default fullscreens for settings menu
-	if settings.get_fullscreen():
-		settings_menu.options[1] = "Fullscreen: ON"
-	else:
-		settings_menu.options[1] = "Fullscreen: OFF"
+    #default fullscreens for settings menu
+    if settings.get_fullscreen():
+        settings_menu.options[1] = "Fullscreen: ON"
+    else:
+        settings_menu.options[1] = "Fullscreen: OFF"
 
-	settings_menu.options[0] = "Player Name: "+str(settings.get_username())
+    settings_menu.options[0] = "Player Name: "+str(settings.get_username())
 
 
 update_settings_menu_texts()
@@ -196,31 +196,31 @@ update_settings_menu_texts()
 ######################################################################
 
 def set_fullscreen():
-	"""
-		Set a fullscreen
-	"""
-	pygame.display.set_mode((width,height),pygame.FULLSCREEN)
+    """
+        Set a fullscreen
+    """
+    pygame.display.set_mode((width,height),pygame.FULLSCREEN)
 
 def toggle_fullscreen():
-	"""
-		Change between fullscreen and windowed
-		Modifies the texts on settings menu
-	"""
-	fullscreen = settings.get_fullscreen()
-	if not fullscreen:
-		set_fullscreen()
-		fullscreen = True
-	else:
-		pygame.display.set_mode(size)
-		fullscreen = False
+    """
+        Change between fullscreen and windowed
+        Modifies the texts on settings menu
+    """
+    fullscreen = settings.get_fullscreen()
+    if not fullscreen:
+        set_fullscreen()
+        fullscreen = True
+    else:
+        pygame.display.set_mode(size)
+        fullscreen = False
 
-	settings.set_fullscreen(fullscreen)
-	fullscreen = settings.get_fullscreen()
+    settings.set_fullscreen(fullscreen)
+    fullscreen = settings.get_fullscreen()
 
-	#modify the settings_menu text
-	if fullscreen: text = ' ON'
-	else: text = ' OFF'
-	settings_menu.options[1] = "Fullscreen:"+text
+    #modify the settings_menu text
+    if fullscreen: text = ' ON'
+    else: text = ' OFF'
+    settings_menu.options[1] = "Fullscreen:"+text
 
 #default fullscreens for settings menu
 if settings.get_fullscreen(): set_fullscreen()
@@ -241,45 +241,45 @@ if settings.get_fullscreen(): set_fullscreen()
 #Debug Options
 def key_debug_actions(event):
 #the global var collision may be modified
-	if event.key == pygame.K_F1:
-		if status._DEBUG_COLLISION: status._DEBUG_COLLISION = False
-		else: status._DEBUG_COLLISION = True
-	elif event.key == pygame.K_F2:
-		if status._DEBUG_DEATH: status._DEBUG_DEATH = False
-		else: status._DEBUG_DEATH = True
-	elif event.key == pygame.K_f:
-		stick.flip_rotation()
-	elif event.key == pygame.K_F12:
-		print level_list.levelfiles
-		print level_list.levelsuuid
+    if event.key == pygame.K_F1:
+        if status._DEBUG_COLLISION: status._DEBUG_COLLISION = False
+        else: status._DEBUG_COLLISION = True
+    elif event.key == pygame.K_F2:
+        if status._DEBUG_DEATH: status._DEBUG_DEATH = False
+        else: status._DEBUG_DEATH = True
+    elif event.key == pygame.K_f:
+        stick.flip_rotation()
+    elif event.key == pygame.K_F12:
+        print(level_list.levelfiles)
+        print(level_list.levelsuuid)
 
 #Main Key Handler For the GAMING STATUS
 def key_handler(event):
 
-	if event.type == pygame.KEYDOWN:
-		if event.key == pygame.K_DOWN: stick.move_down();
-		elif event.key == pygame.K_UP: stick.move_up();
-		elif event.key == pygame.K_LEFT: stick.move_left();
-		elif event.key == pygame.K_RIGHT: stick.move_right();
-		elif event.key == pygame.K_LCTRL: stick.turbo_on();
-		elif event.key == pygame.K_r: stick.rotate(amount=20);
-		elif event.key == pygame.K_x: print stick.path;
-		elif event.key == pygame.K_e:
-			tmask = pygame.mask.from_surface(status.level.imgcol.subsurface(stick.rect))
-			functions.print_mask(tmask)
+    if event.type == pygame.KEYDOWN:
+        if event.key == pygame.K_DOWN: stick.move_down();
+        elif event.key == pygame.K_UP: stick.move_up();
+        elif event.key == pygame.K_LEFT: stick.move_left();
+        elif event.key == pygame.K_RIGHT: stick.move_right();
+        elif event.key == pygame.K_LCTRL: stick.turbo_on();
+        elif event.key == pygame.K_r: stick.rotate(amount=20);
+        elif event.key == pygame.K_x: print(stick.path);
+        elif event.key == pygame.K_e:
+            tmask = pygame.mask.from_surface(status.level.imgcol.subsurface(stick.rect))
+            functions.print_mask(tmask)
 
-		#Pause Button
-		elif event.key == pygame.K_ESCAPE or event.key == pygame.K_p: status.pause_game()
+        #Pause Button
+        elif event.key == pygame.K_ESCAPE or event.key == pygame.K_p: status.pause_game()
 
-		#Debug Handlers
-		key_debug_actions(event)
+        #Debug Handlers
+        key_debug_actions(event)
 
-	elif event.type == pygame.KEYUP:
-		if event.key == pygame.K_DOWN: stick.move_up();
-		elif event.key == pygame.K_UP: stick.move_down();
-		elif event.key == pygame.K_LEFT: stick.move_right();
-		elif event.key == pygame.K_RIGHT: stick.move_left();
-		elif event.key == pygame.K_LCTRL: stick.turbo_off();
+    elif event.type == pygame.KEYUP:
+        if event.key == pygame.K_DOWN: stick.move_up();
+        elif event.key == pygame.K_UP: stick.move_down();
+        elif event.key == pygame.K_LEFT: stick.move_right();
+        elif event.key == pygame.K_RIGHT: stick.move_left();
+        elif event.key == pygame.K_LCTRL: stick.turbo_off();
 
 #Game Over Menu Handler
 def key_menu_handler(event,menu):
@@ -287,92 +287,92 @@ def key_menu_handler(event,menu):
                 if event.key == pygame.K_DOWN: menu.menu_down();
                 elif event.key == pygame.K_UP: menu.menu_up();
                 elif event.key == pygame.K_RETURN: menu.action_function()
-		else:
-			if menu.event_function != None: menu.event_function(event)
+        else:
+            if menu.event_function != None: menu.event_function(event)
 
 
 def input_name_keyhandler(event):
-	"""
-		Input handler when reading a username
-	"""
-	if event.key == pygame.K_ESCAPE:
-		TRANSITION.setActive()
-		status.set_game_status(cStatus._STAT_SETTINGS)
+    """
+        Input handler when reading a username
+    """
+    if event.key == pygame.K_ESCAPE:
+        TRANSITION.setActive()
+        status.set_game_status(cStatus._STAT_SETTINGS)
 
-	if INPUT_KEYS.process_keystroke(event): #process the keystrokes, and if keystroke is ENTER finish
-		if INPUT_KEYS.sanitize_input():
-			TRANSITION.setActive()
-			settings.set_username(INPUT_KEYS.text)
-			update_settings_menu_texts()
-			status.set_game_status(cStatus._STAT_SETTINGS)
+    if INPUT_KEYS.process_keystroke(event): #process the keystrokes, and if keystroke is ENTER finish
+        if INPUT_KEYS.sanitize_input():
+            TRANSITION.setActive()
+            settings.set_username(INPUT_KEYS.text)
+            update_settings_menu_texts()
+            status.set_game_status(cStatus._STAT_SETTINGS)
 
 
 
 #Specific Pause menu handler
 # (for giving the change to exit the menu without selecting)
 def pause_menu_events(event):
-	if event.key == pygame.K_ESCAPE or event.key == pygame.K_p: status.unpause_game()
+    if event.key == pygame.K_ESCAPE or event.key == pygame.K_p: status.unpause_game()
 
 #Also used by settings menu
 def level_menu_events(event):
-	if event.key == pygame.K_ESCAPE:
-		status.set_game_status(cStatus._STAT_PACKSEL)
-		TRANSITION.setActive()
+    if event.key == pygame.K_ESCAPE:
+        status.set_game_status(cStatus._STAT_PACKSEL)
+        TRANSITION.setActive()
 
 #Also used by settings menu
 def pack_menu_events(event):
-	if event.key == pygame.K_ESCAPE:
-		status.set_game_status(cStatus._STAT_MAINMENU)
-		TRANSITION.setActive()
+    if event.key == pygame.K_ESCAPE:
+        status.set_game_status(cStatus._STAT_MAINMENU)
+        TRANSITION.setActive()
 
 #
 # MAIN ENTRANCE FOR EVENT HANDLING
 #
 def event_handler(event):
-	"""
-		Different handlers for different events in different status
-		Check cStatus class for status definitions
-	"""
-	if event.type == pygame.QUIT: pygame.quit();sys.exit()
+    """
+        Different handlers for different events in different status
+        Check cStatus class for status definitions
+    """
+    if event.type == pygame.QUIT: pygame.quit();sys.exit()
 
-	#if transition ongoing do not listen the events
-	if TRANSITION.isActive(): return
+    #if transition ongoing do not listen the events
+    if TRANSITION.isActive(): return
 
-	#Gaming
-	if status.GAME_STAT == cStatus._STAT_GAMING:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_handler(event)
+    #Gaming
+    if status.GAME_STAT == cStatus._STAT_GAMING:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_handler(event)
 
-	#Game Over Screen
-	elif status.GAME_STAT == cStatus._STAT_GAMEOVER:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,gover_menu)
+    #Game Over Screen
+    elif status.GAME_STAT == cStatus._STAT_GAMEOVER:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,gover_menu)
 
-	#PAUSE Screen
-	elif status.GAME_STAT == cStatus._STAT_PAUSE:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,pause_menu)
+    #PAUSE Screen
+    elif status.GAME_STAT == cStatus._STAT_PAUSE:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,pause_menu)
 
-	#Select PACK Screen
-	elif status.GAME_STAT == cStatus._STAT_PACKSEL:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,packs_menu)
+    #Select PACK Screen
+    elif status.GAME_STAT == cStatus._STAT_PACKSEL:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,packs_menu)
 
-	#Select level Screen
-	elif status.GAME_STAT == cStatus._STAT_LEVELSEL:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,levels_menu)
+    #Select level Screen
+    elif status.GAME_STAT == cStatus._STAT_LEVELSEL:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,levels_menu)
 
-	#Records level Screen
-	elif status.GAME_STAT == cStatus._STAT_LEVELRECORD:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,records_menu)
+    #Records level Screen
+    elif status.GAME_STAT == cStatus._STAT_LEVELRECORD:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,records_menu)
 
-	#MAIN Menu Screen
-	elif status.GAME_STAT == cStatus._STAT_MAINMENU:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,main_menu)
+    #MAIN Menu Screen
+    elif status.GAME_STAT == cStatus._STAT_MAINMENU:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,main_menu)
 
-	#SETTINGS Menu Screen
-	elif status.GAME_STAT == cStatus._STAT_SETTINGS:
-		if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,settings_menu)
+    #SETTINGS Menu Screen
+    elif status.GAME_STAT == cStatus._STAT_SETTINGS:
+        if event.type == pygame.KEYDOWN or event.type == pygame.KEYUP: key_menu_handler(event,settings_menu)
 
-	#TEXT INPUT
-	elif status.GAME_STAT == status._STAT_NEWNAME:
-		if event.type == pygame.KEYDOWN: input_name_keyhandler(event)
+    #TEXT INPUT
+    elif status.GAME_STAT == status._STAT_NEWNAME:
+        if event.type == pygame.KEYDOWN: input_name_keyhandler(event)
 
 
 
@@ -391,143 +391,143 @@ def event_handler(event):
 #Load a Specific Level (needed for level menu function)
 # @TODO : Maybe better in another place or python file
 def load_level(level_num):
-	status.level = cLevel(level_list.levelfiles[level_num])
-	stick.__init__(status.level.startx,status.level.starty,0,status.level.stick);
-	#stick.load_stick_image(status.level.stick)
+    status.level = cLevel(level_list.levelfiles[level_num])
+    stick.__init__(status.level.startx,status.level.starty,0,status.level.stick);
+    #stick.load_stick_image(status.level.stick)
 
-	status.reset_lives()
-	status.set_game_status(cStatus._STAT_GAMING)
-	status.SUBSTAT = 0
-	status.current_level = level_num
-	status.reset_timer()
-	status.clear_penalty_seconds()
+    status.reset_lives()
+    status.set_game_status(cStatus._STAT_GAMING)
+    status.SUBSTAT = 0
+    status.current_level = level_num
+    status.reset_timer()
+    status.clear_penalty_seconds()
 
 def load_level_filename(level_fname):
-	"""Load level from a filename. For debug purposes"""
-	status.level = cLevel(level_fname)
-	stick.__init__(status.level.startx,status.level.starty,0,status.level.stick);
-	#stick.load_stick_image(status.level.stick)
+    """Load level from a filename. For debug purposes"""
+    status.level = cLevel(level_fname)
+    stick.__init__(status.level.startx,status.level.starty,0,status.level.stick);
+    #stick.load_stick_image(status.level.stick)
 
-	status.reset_lives()
-	status.set_game_status(cStatus._STAT_GAMING)
-	status.SUBSTAT = 0
-	status.current_level = -1
-	status.reset_timer()
-	status.clear_penalty_seconds()
+    status.reset_lives()
+    status.set_game_status(cStatus._STAT_GAMING)
+    status.SUBSTAT = 0
+    status.current_level = -1
+    status.reset_timer()
+    status.clear_penalty_seconds()
 
 def load_levellist_with_pack(pack_num):
-	"""
-		Fills the level menu with the levels of a packlist
-	"""
+    """
+        Fills the level menu with the levels of a packlist
+    """
 
-	basedir = packlist.get_pack_basedir(pack_num)
-	#levels_menu references to level list so just modify level list
-	#and set level_menu current to 0
-	level_list.load_leveldir(basedir)
-	levels_menu.reload_options(level_list.get_levelnames())
-	levels_menu.set_current(0)
+    basedir = packlist.get_pack_basedir(pack_num)
+    #levels_menu references to level list so just modify level list
+    #and set level_menu current to 0
+    level_list.load_leveldir(basedir)
+    levels_menu.reload_options(level_list.get_levelnames())
+    levels_menu.set_current(0)
 
 #Records menu selection function
 def records_menu_selection():
-	if records_menu.current == 0:
-		status.current_level += 1
-		if level_list.level_exists(status.current_level):
-			load_level(status.current_level)
-		else:
-			status.set_game_status(cStatus._STAT_PACKSEL)
+    if records_menu.current == 0:
+        status.current_level += 1
+        if level_list.level_exists(status.current_level):
+            load_level(status.current_level)
+        else:
+            status.set_game_status(cStatus._STAT_PACKSEL)
 
 
-	elif records_menu.current == 1:
-		load_level(status.current_level)
+    elif records_menu.current == 1:
+        load_level(status.current_level)
 
-	elif records_menu.current == 2:
-		levels_menu.set_current(status.current_level)
-		status.set_game_status(cStatus._STAT_LEVELSEL)
+    elif records_menu.current == 2:
+        levels_menu.set_current(status.current_level)
+        status.set_game_status(cStatus._STAT_LEVELSEL)
 
-	TRANSITION.setActive()
+    TRANSITION.setActive()
 
 def settings_menu_selection():
-	if settings_menu.current == 0:
-		status.set_game_status(cStatus._STAT_NEWNAME)
+    if settings_menu.current == 0:
+        status.set_game_status(cStatus._STAT_NEWNAME)
 
-	elif settings_menu.current == 1:
-		toggle_fullscreen()
+    elif settings_menu.current == 1:
+        toggle_fullscreen()
 
 
-	elif settings_menu.current == 2:
-		status.set_game_status(cStatus._STAT_MAINMENU)
+    elif settings_menu.current == 2:
+        status.set_game_status(cStatus._STAT_MAINMENU)
 
-	TRANSITION.setActive()
+    TRANSITION.setActive()
 
 #Game over menu selection function
 def game_over_menu_selection():
     #Try again. Reload everything and return to game mode
-	if gover_menu.current == 0:
-		load_level(status.current_level)
+    if gover_menu.current == 0:
+        load_level(status.current_level)
 
         #Return to Level Select Menu
-	elif gover_menu.current == 1:
-		levels_menu.set_current(status.current_level)
-		status.set_game_status(cStatus._STAT_LEVELSEL)
+    elif gover_menu.current == 1:
+        levels_menu.set_current(status.current_level)
+        status.set_game_status(cStatus._STAT_LEVELSEL)
 
         #Return to Main Menu
-	elif gover_menu.current == 2:
-		status.set_game_status(cStatus._STAT_MAINMENU)
+    elif gover_menu.current == 2:
+        status.set_game_status(cStatus._STAT_MAINMENU)
 
-	TRANSITION.setActive()
+    TRANSITION.setActive()
 
 #Level Menu Selection Function
 def level_menu_selection():
-	load_level(levels_menu.current)
-	status.set_game_status(cStatus._STAT_GAMING)
-	TRANSITION.setActive()
+    load_level(levels_menu.current)
+    status.set_game_status(cStatus._STAT_GAMING)
+    TRANSITION.setActive()
 
 #Level Menu Selection Function
 def pack_menu_selection():
-	if packlist.isPackOpen(packs_menu.current,settings.total_levels_cleared()):
-		load_levellist_with_pack(packs_menu.current)
-		status.set_game_status(cStatus._STAT_LEVELSEL)
-		TRANSITION.setActive()
-	else:
-		print "pack not opened yet"
+    if packlist.isPackOpen(packs_menu.current,settings.total_levels_cleared()):
+        load_levellist_with_pack(packs_menu.current)
+        status.set_game_status(cStatus._STAT_LEVELSEL)
+        TRANSITION.setActive()
+    else:
+        print("pack not opened yet")
 
 #Pause Menu selection Function
 def pause_menu_selection():
-	#Continue, change to game mode
-	if pause_menu.current == 0:
-		status.unpause_game()
+    #Continue, change to game mode
+    if pause_menu.current == 0:
+        status.unpause_game()
 
-	#Reset Level
-	elif pause_menu.current == 1:
-		load_level(status.current_level)
-		TRANSITION.setActive()
-	#Return to Level Select Menu
-	elif pause_menu.current == 2:
-		levels_menu.set_current(status.current_level)
-		status.set_game_status(cStatus._STAT_LEVELSEL)
-		TRANSITION.setActive()
+    #Reset Level
+    elif pause_menu.current == 1:
+        load_level(status.current_level)
+        TRANSITION.setActive()
+    #Return to Level Select Menu
+    elif pause_menu.current == 2:
+        levels_menu.set_current(status.current_level)
+        status.set_game_status(cStatus._STAT_LEVELSEL)
+        TRANSITION.setActive()
 
-	#Return to Main Menu
-	elif pause_menu.current == 3:
-		status.set_game_status(cStatus._STAT_MAINMENU)
-		TRANSITION.setActive()
+    #Return to Main Menu
+    elif pause_menu.current == 3:
+        status.set_game_status(cStatus._STAT_MAINMENU)
+        TRANSITION.setActive()
 
 def main_menu_selection():
         #Go to level selection to start the game
-	if main_menu.current == 0:
-		status.set_game_status(cStatus._STAT_PACKSEL)
+    if main_menu.current == 0:
+        status.set_game_status(cStatus._STAT_PACKSEL)
 
-	#Settings
-	elif main_menu.current == 1:
-		update_settings_menu_texts()
-		status.set_game_status(cStatus._STAT_SETTINGS)
+    #Settings
+    elif main_menu.current == 1:
+        update_settings_menu_texts()
+        status.set_game_status(cStatus._STAT_SETTINGS)
 
-	#Exit
-	elif main_menu.current == 2:
-		pygame.quit()
-		sys.exit()
+    #Exit
+    elif main_menu.current == 2:
+        pygame.quit()
+        sys.exit()
 
-	TRANSITION.setActive()
+    TRANSITION.setActive()
 
 #MENU BINDINGS
 gover_menu.action_function = game_over_menu_selection
@@ -558,77 +558,77 @@ pause_menu.event_function = pause_menu_events
 
 #Collision game handling
 def wall_colision(cx,cy):
-	"""
-		All actions triggered by a colision with level boundaries
-			- add a collision sprite to print
-			- Change stick rotation direction for a time
-			- Make the stick jump back
-	"""
+    """
+        All actions triggered by a colision with level boundaries
+            - add a collision sprite to print
+            - Change stick rotation direction for a time
+            - Make the stick jump back
+    """
 
-	#Create a 'collision' animated sprite
-	tsprite = SPRITE_FAC.get_sprite_by_id(cx,cy,SPRITE_FAC.EXPLOSION)
-	ANIM_SPRITES.append(tsprite)
+    #Create a 'collision' animated sprite
+    tsprite = SPRITE_FAC.get_sprite_by_id(cx,cy,SPRITE_FAC.EXPLOSION)
+    ANIM_SPRITES.append(tsprite)
 
-	colision_handler(cx,cy)
+    colision_handler(cx,cy)
 
-	#Add 3 seconds to the total time
-	status.add_seconds(3)
+    #Add 3 seconds to the total time
+    status.add_seconds(3)
 
-	#Only if not in debug mode or invincible mode
-	if not status._DEBUG_DEATH:
-		if not status.invincible:
-			status.set_invincible()
-			status.decrease_lives()
+    #Only if not in debug mode or invincible mode
+    if not status._DEBUG_DEATH:
+        if not status.invincible:
+            status.set_invincible()
+            status.decrease_lives()
 
 
 
 def colision_handler(cx,cy):
-	#Move the Stick back from the collision place
-	#and temporary change the rotation
-	stick.jump_back(cx,cy)
-	stick.flip_rotation_tmp()
+    #Move the Stick back from the collision place
+    #and temporary change the rotation
+    stick.jump_back(cx,cy)
+    stick.flip_rotation_tmp()
 
 
 
 def handle_item_monster_colision(item,cx,cy,sprite_id=0):
-	"""
-		- Applies the animation on collision for the item
-		- calls the onCollision handler of item
-		- sets invincibility to stick
+    """
+        - Applies the animation on collision for the item
+        - calls the onCollision handler of item
+        - sets invincibility to stick
 
-		- If applicable, generates a text sprite (Boing, Crash etc)
-		- If applicable deletes the item (one colision items)
-	"""
-	if item.isMonster():
-		stick.flip_rotation_tmp()
-		stick.jump_back(cx,cy,1.5)
+        - If applicable, generates a text sprite (Boing, Crash etc)
+        - If applicable deletes the item (one colision items)
+    """
+    if item.isMonster():
+        stick.flip_rotation_tmp()
+        stick.jump_back(cx,cy,1.5)
 
-	item.col_anim.draw = True
-	item.onCollision(stick,status) #different item handlers
-	status.set_invincible()
-	tsprite = SPRITE_FAC.get_sprite_by_id(cx,cy,sprite_id)
-	ANIM_SPRITES.append(tsprite)
+    item.col_anim.draw = True
+    item.onCollision(stick,status) #different item handlers
+    status.set_invincible()
+    tsprite = SPRITE_FAC.get_sprite_by_id(cx,cy,sprite_id)
+    ANIM_SPRITES.append(tsprite)
 
 def item_colisions():
-	for m in status.level.items:
-		colision,xc,yc = stick.collides(m)
-		if colision:
-			colision_handler(xc,yc)
-			if not status.invincible:
-				handle_item_monster_colision(m,xc,yc,m.BSPRITEFAC)
+    for m in status.level.items:
+        colision,xc,yc = stick.collides(m)
+        if colision:
+            colision_handler(xc,yc)
+            if not status.invincible:
+                handle_item_monster_colision(m,xc,yc,m.BSPRITEFAC)
 
 def monster_colisions():
-	for m in status.level.monsters:
-		colision,xc,yc = stick.collides(m)
-		if colision and not status.invincible:
-			colision_handler(xc,yc)
-			handle_item_monster_colision(m,xc,yc,SPRITE_FAC.OUCH)
+    for m in status.level.monsters:
+        colision,xc,yc = stick.collides(m)
+        if colision and not status.invincible:
+            colision_handler(xc,yc)
+            handle_item_monster_colision(m,xc,yc,SPRITE_FAC.OUCH)
 
 def monster_logic():
-	for m in status.level.monsters:
-		m.logic_update()
-		if status.level.stick_collides(m)[0]:
-			m.onWallCollision()
+    for m in status.level.monsters:
+        m.logic_update()
+        if status.level.stick_collides(m)[0]:
+            m.onWallCollision()
 
 ###################################################################
 
@@ -678,18 +678,18 @@ def debug_onscreen(colides):
 
 
 def draw_transition():
-	TRANSITION.draw_transition()
-	return
-	if TRANSITION.isActive():
-		if TRANSITION.isDrawBG():
-			window.blit(TRANSITION.getBG(),TRANSITION.getBG().get_rect())
+    TRANSITION.draw_transition()
+    return
+    if TRANSITION.isActive():
+        if TRANSITION.isDrawBG():
+            window.blit(TRANSITION.getBG(),TRANSITION.getBG().get_rect())
 
-		if TRANSITION.getType() == TRANSITION.SQUARES:
-			for r in TRANSITION.getRects():
-				pygame.draw.rect(window,black,r)
-		elif TRANSITION.getType() == TRANSITION.CIRCLE:
-			pygame.draw.circle(window, black, (width/2,height/2), TRANSITION.getRadius())
-		TRANSITION.logic_update()
+        if TRANSITION.getType() == TRANSITION.SQUARES:
+            for r in TRANSITION.getRects():
+                pygame.draw.rect(window,black,r)
+        elif TRANSITION.getType() == TRANSITION.CIRCLE:
+            pygame.draw.circle(window, black, (width/2,height/2), TRANSITION.getRadius())
+        TRANSITION.logic_update()
 
 #Updates all the needed images/sprites for goal Screen
 def update_scene_goal():
@@ -700,163 +700,163 @@ def update_scene_goal():
 #@TODO: THis has to be beautiful
 #
 def update_scene_records():
-	records = status.level.records
-	player_index = status.level.player_record_index
+    records = status.level.records
+    player_index = status.level.player_record_index
 
-	# pick a font you have and set its size
-        myfont = pygame.font.SysFont("Arial", 25)
+    # pick a font you have and set its size
+    myfont = pygame.font.SysFont("Arial", 25)
 
-	for i,r in enumerate(records):
-		player = r[1]
-		time = r[0]
+    for i,r in enumerate(records):
+        player = r[1]
+        time = r[0]
 
-		seconds         = int(time)
-        	millis          = str(seconds - time).partition(".")[2]
-        	timestr         = str(seconds)+":"+millis[0:3]
+        seconds = int(time)
+        millis = str(seconds - time).partition(".")[2]
+        timestr = str(seconds)+":"+millis[0:3]
 
-		if player_index == i:
-			timefont	= FONT.render(timestr, 1, black,yellow)
-			namefont	= FONT.render(player, 1, black,yellow)
-		else:
-			timefont	= FONT.render(timestr, 1, black)
-			namefont	= FONT.render(player, 1, black)
+        if player_index == i:
+            timefont = FONT.render(timestr, 1, black,yellow)
+            namefont = FONT.render(player, 1, black,yellow)
+        else:
+            timefont = FONT.render(timestr, 1, black)
+            namefont = FONT.render(player, 1, black)
 
 
 
-		window.blit(namefont, (150, 50*(i+3)))
-		window.blit(timefont, (50, 50*(i+3)))
+        window.blit(namefont, (150, 50*(i+3)))
+        window.blit(timefont, (50, 50*(i+3)))
 
-	if player_index > -1:
-        	window.blit(newrecord_sprite.image,newrecord_sprite.rect)
-                newrecord_sprite.update(pygame.time.get_ticks())
+    if player_index > -1:
+            window.blit(newrecord_sprite.image,newrecord_sprite.rect)
+            newrecord_sprite.update(pygame.time.get_ticks())
 
 
 #updates all the needed images/sprites
 def update_scene():
-	"""
-		Blits all the Gaming sprites:
-		 - status.level , goal_sprite, ANIM_SPRITES, stick, lifebar
-		 - Possible level monsters
+    """
+        Blits all the Gaming sprites:
+         - status.level , goal_sprite, ANIM_SPRITES, stick, lifebar
+         - Possible level monsters
 
-		Also deletes sprites from ANIM_SPRITES if their draw flag is false
-	"""
-	window.fill(white)
+        Also deletes sprites from ANIM_SPRITES if their draw flag is false
+    """
+    window.fill(white)
 
-        window.blit(status.level.bg,status.level.bg.get_rect())
+    window.blit(status.level.bg,status.level.bg.get_rect())
 
-        dx = -(stick.rect.center[0]-width/2)
-        dy = -(stick.rect.center[1]-height/2)
+    dx = -(stick.rect.center[0]-width/2)
+    dy = -(stick.rect.center[1]-height/2)
 
-        window.blit(status.level.image,status.level.rect.move(dx,dy))
+    window.blit(status.level.image,status.level.rect.move(dx,dy))
 
-        window.blit(status.level.goal_sprite.image,status.level.goal_sprite.rect.move(dx,dy))
-        status.level.goal_sprite.update(pygame.time.get_ticks())
-
-
-	#Items InGame
-	for i,m in enumerate(status.level.items):
-                if m.col_anim.draw == False:
-			window.blit(m.anim.image,m.rect.move(dx,dy))
-			m.draw_update()
-		else:
-			window.blit(m.col_anim.image,m.rect.move(dx,dy))
-			if m.draw_update() and m.delete_on_colision:
-				status.level.items.remove(m)
-
-     	#Monsters
-	for i,m in enumerate(status.level.monsters):
-                if m.col_anim.draw == False:
-			window.blit(m.anim.image,m.rect.move(dx,dy))
-			m.draw_update()
-		else:
-			window.blit(m.col_anim.image,m.rect.move(dx,dy))
-			if m.draw_update() and m.delete_on_colision:
-				status.level.monsters.remove(m)
+    window.blit(status.level.goal_sprite.image,status.level.goal_sprite.rect.move(dx,dy))
+    status.level.goal_sprite.update(pygame.time.get_ticks())
 
 
-	for i,s in enumerate(ANIM_SPRITES):
-                if s.draw:
-                        window.blit(s.image,s.rect.move(dx,dy))
-                        s.update(pygame.time.get_ticks())
-		else:
-			ANIM_SPRITES.pop(i) #If draw is false, delete the reference
+    #Items InGame
+    for i,m in enumerate(status.level.items):
+        if m.col_anim.draw == False:
+            window.blit(m.anim.image,m.rect.move(dx,dy))
+            m.draw_update()
+        else:
+            window.blit(m.col_anim.image,m.rect.move(dx,dy))
+            if m.draw_update() and m.delete_on_colision:
+                status.level.items.remove(m)
 
-	window.blit(stick.image,stick.rect.move(dx,dy))
+        #Monsters
+    for i,m in enumerate(status.level.monsters):
+        if m.col_anim.draw == False:
+            window.blit(m.anim.image,m.rect.move(dx,dy))
+            m.draw_update()
+        else:
+            window.blit(m.col_anim.image,m.rect.move(dx,dy))
+            if m.draw_update() and m.delete_on_colision:
+                status.level.monsters.remove(m)
+
+
+    for i,s in enumerate(ANIM_SPRITES):
+        if s.draw:
+            window.blit(s.image,s.rect.move(dx,dy))
+            s.update(pygame.time.get_ticks())
+        else:
+            ANIM_SPRITES.pop(i) #If draw is false, delete the reference
+
+    window.blit(stick.image,stick.rect.move(dx,dy))
 
 
 def update_gui_timer_CF():
-	"""
-		Draw the timer using custom fonts
-	"""
+    """
+        Draw the timer using custom fonts
+    """
 
-	#TIMING
-	seconds         = int(status.get_elapsed_time())
-	millis          = str(seconds - status.get_elapsed_time()).partition(".")[2]
+    #TIMING
+    seconds         = int(status.get_elapsed_time())
+    millis          = str(seconds - status.get_elapsed_time()).partition(".")[2]
 
-	if seconds > 999:
-		seconds = "999"
-		millis = "00"
+    if seconds > 999:
+        seconds = "999"
+        millis = "00"
 
-	seconds_images = number_gen.parse_number(int(seconds))
-	millis_images = number_gen.parse_number(int(millis[0:2]))
+    seconds_images = number_gen.parse_number(int(seconds))
+    millis_images = number_gen.parse_number(int(millis[0:2]))
 
-	nw = seconds_images[0].get_rect().width
+    nw = seconds_images[0].get_rect().width
 
-	#Bg Zeros (avoid a flickr)
-	zero = number_gen.parse_number(0)[0]
-	window.blit(pygame.transform.rotate(zero,-10),zero.get_rect().move((1+4)*nw,height-zero.get_rect().height - 15))
+    #Bg Zeros (avoid a flickr)
+    zero = number_gen.parse_number(0)[0]
+    window.blit(pygame.transform.rotate(zero,-10),zero.get_rect().move((1+4)*nw,height-zero.get_rect().height - 15))
 
-	#Trailing zeros
-	while len(seconds_images) < 3:
-		zero = number_gen.parse_number(0)[0]
-		seconds_images.insert(0,zero)
+    #Trailing zeros
+    while len(seconds_images) < 3:
+        zero = number_gen.parse_number(0)[0]
+        seconds_images.insert(0,zero)
 
 
-	ddimg = number_gen.get_doubledots()
-	window.blit(pygame.transform.rotate(ddimg,-10),ddimg.get_rect().move(len(seconds_images)*nw,height-ddimg.get_rect().height - 15))
+    ddimg = number_gen.get_doubledots()
+    window.blit(pygame.transform.rotate(ddimg,-10),ddimg.get_rect().move(len(seconds_images)*nw,height-ddimg.get_rect().height - 15))
 
-	for i,s in enumerate(seconds_images):
-		window.blit(pygame.transform.rotate(s,-10),s.get_rect().move(i*nw,height-s.get_rect().height - 15))
+    for i,s in enumerate(seconds_images):
+        window.blit(pygame.transform.rotate(s,-10),s.get_rect().move(i*nw,height-s.get_rect().height - 15))
 
-	for i,s in enumerate(millis_images):
-		window.blit(pygame.transform.rotate(s,-10),s.get_rect().move((i+4)*nw,height-s.get_rect().height - 15))
+    for i,s in enumerate(millis_images):
+        window.blit(pygame.transform.rotate(s,-10),s.get_rect().move((i+4)*nw,height-s.get_rect().height - 15))
 
 def update_gui_timer_TTF():
-	"""
-		updates the timer using a TTF font
-		@TODO::Check another font than the dafault font for menus,
-		this font here, generates bouncing numbers not good
-		for my eye
-	"""
-	window.blit(bg_timer_image,bg_timer_image.get_rect().move(0,400))
-	time = round(status.get_elapsed_time(),2)
-	ypad = 55
-	xpad = 26
+    """
+        updates the timer using a TTF font
+        @TODO::Check another font than the dafault font for menus,
+        this font here, generates bouncing numbers not good
+        for my eye
+    """
+    window.blit(bg_timer_image,bg_timer_image.get_rect().move(0,400))
+    time = round(status.get_elapsed_time(),2)
+    ypad = 55
+    xpad = 26
 
-	if time > 999:
-		time = "A Lot!"
-		t=0
-	else:
-		#traling zeros space
-		if time < 10:t = 2
-		elif time < 100:t = 1
-		else:t = 0
+    if time > 999:
+        time = "A Lot!"
+        t=0
+    else:
+        #traling zeros space
+        if time < 10:t = 2
+        elif time < 100:t = 1
+        else:t = 0
 
-		for zero in range(t):
-			timertxt = TIMERFONT.render(str("0"), 1, black)
-			window.blit(timertxt, (10+zero*xpad, height-ypad))
+        for zero in range(t):
+            timertxt = TIMERFONT.render(str("0"), 1, black)
+            window.blit(timertxt, (10+zero*xpad, height-ypad))
 
-	timertxt = TIMERFONT.render(str(time), 1, black)
-	window.blit(timertxt, (10+t*xpad, height-ypad))
+    timertxt = TIMERFONT.render(str(time), 1, black)
+    window.blit(timertxt, (10+t*xpad, height-ypad))
 
 #Updates all the gui sprites
 def update_gui():
-	#LifeBar status
-	window.blit(status.lifebar_image,status.lifebar_rect)
+    #LifeBar status
+    window.blit(status.lifebar_image,status.lifebar_rect)
 
-	#timer
-	#update_gui_timer_CF()
-	update_gui_timer_TTF()
+    #timer
+    #update_gui_timer_CF()
+    update_gui_timer_TTF()
 
 #A fancy rotozoom for the stick death
 def fancy_stick_death_animation():
@@ -883,181 +883,181 @@ def fancy_stick_death_animation():
 
 #InGame menu Screen
 def ingame_menu_screen(menu,rotate=True,x=200,y=200):
-	"""
-	 Paints a menu on screen while keeping the painting going behind.
-	  - menu (the menu to print)
-	  - rotate (keeps the stick rotating) --- True in fancy gameover, False in Pause
-	"""
-	update_scene()
-	update_gui()
-	if rotate: stick.rotate(1)
-	draw_menu(menu,x,y)
+    """
+     Paints a menu on screen while keeping the painting going behind.
+      - menu (the menu to print)
+      - rotate (keeps the stick rotating) --- True in fancy gameover, False in Pause
+    """
+    update_scene()
+    update_gui()
+    if rotate: stick.rotate(1)
+    draw_menu(menu,x,y)
 
 #InGame menu Screen
 def menu_screen(menu,rotate=True,x=200,y=200):
-	"""
-	 Paints a menu on screen
-	  - menu (the menu to print)
-	  - rotate (keeps the stick rotating) --- True in fancy gameover, False in Pause
-	"""
-	update_gui()
-	if rotate: stick.rotate(1)
-	draw_menu(menu,x,y)
+    """
+     Paints a menu on screen
+      - menu (the menu to print)
+      - rotate (keeps the stick rotating) --- True in fancy gameover, False in Pause
+    """
+    update_gui()
+    if rotate: stick.rotate(1)
+    draw_menu(menu,x,y)
 
 #
 # What to draw on screen for a newname
 #
 def newname_screen():
-	window.fill(white)
+    window.fill(white)
 
-	window.blit(INPUT_KEYS_BG,INPUT_KEYS_BG.get_rect())
+    window.blit(INPUT_KEYS_BG,INPUT_KEYS_BG.get_rect())
 
-	namefont    = FONT.render(INPUT_KEYS.text, 1, black)
-	window.blit(namefont, (100, 200))
+    namefont    = FONT.render(INPUT_KEYS.text, 1, black)
+    window.blit(namefont, (100, 200))
 
-	for i,err in enumerate(INPUT_KEYS.get_error()):
-		errorfont = FONT.render(err, 1, red)
-		window.blit(errorfont, (100, 250+i*40))
+    for i,err in enumerate(INPUT_KEYS.get_error()):
+        errorfont = FONT.render(err, 1, red)
+        window.blit(errorfont, (100, 250+i*40))
 
 #Game Over Screen
 
 
 def level_selection_screen():
-	level_select_menu()
+    level_select_menu()
 
 def pack_selection_screen():
-	pack_select_menu()
+    pack_select_menu()
 
 def goal_screen():
-	"""
-		Update screen when goal. Different situations to handle, controlled
-		by status.SUBSTAT
-			1 - Move the stick to the center of the goal
-			2 - Do a fancy flip Screen animation
-			3 - Show a screen with the results
-			4 - Give options: Repeat or Next level
-	"""
-	update_scene()
-	stick.rotate(25)
+    """
+        Update screen when goal. Different situations to handle, controlled
+        by status.SUBSTAT
+            1 - Move the stick to the center of the goal
+            2 - Do a fancy flip Screen animation
+            3 - Show a screen with the results
+            4 - Give options: Repeat or Next level
+    """
+    update_scene()
+    stick.rotate(25)
 
-	if status.SUBSTAT == 0:
-		#Move Stick to Goal center
-		ox = status.level.goal_sprite.rect.x;
-		oy = status.level.goal_sprite.rect.y;
+    if status.SUBSTAT == 0:
+        #Move Stick to Goal center
+        ox = status.level.goal_sprite.rect.x;
+        oy = status.level.goal_sprite.rect.y;
 
-		if not stick.move_towards_position(ox,oy):
-			stick.movement()
-		else:
-			stick.enable_disable_movement()
-			status.SUBSTAT = 1
+        if not stick.move_towards_position(ox,oy):
+            stick.movement()
+        else:
+            stick.enable_disable_movement()
+            status.SUBSTAT = 1
 
-	elif status.SUBSTAT == 1:
-		#Goal Running there
-		gtext_sprite.incr_move(-10,0)
-		update_scene_goal()
-		if gtext_sprite.out_of_screen():
-			status.SUBSTAT = 2
-			gtext_sprite.move(800,250) #return to begining
+    elif status.SUBSTAT == 1:
+        #Goal Running there
+        gtext_sprite.incr_move(-10,0)
+        update_scene_goal()
+        if gtext_sprite.out_of_screen():
+            status.SUBSTAT = 2
+            gtext_sprite.move(800,250) #return to begining
 
-	elif status.SUBSTAT == 2:
-		TRANSITION.setActive()
-		status.SUBSTAT = 0     #reset to original
-		status.set_game_status(cStatus._STAT_LEVELRECORD)
+    elif status.SUBSTAT == 2:
+        TRANSITION.setActive()
+        status.SUBSTAT = 0     #reset to original
+        status.set_game_status(cStatus._STAT_LEVELRECORD)
 
 def records_screen():
-	"""
-		Show the records
-	"""
+    """
+        Show the records
+    """
 
-	#Some Entering animation would be nice
-        #if status.SUBSTAT == 0:
-	status.SUBSTAT = 1 #Skip the first stat (saved for further animation)
+    #Some Entering animation would be nice
+    #if status.SUBSTAT == 0:
+    status.SUBSTAT = 1 #Skip the first stat (saved for further animation)
 
-	if status.SUBSTAT == 1:
-		draw_menu(records_menu,width-200,height-210)
-		update_scene_records()
+    if status.SUBSTAT == 1:
+        draw_menu(records_menu,width-200,height-210)
+        update_scene_records()
 
 #
 # Draw the level selection Screen
 # @TODO: this is very specific for the level selection... but it's almost the same as the other menus, so maybe can be joined in draw menu with a flag?
 #
 def level_select_menu():
-        '''
-                level_select_menu:
-                This menu moves all the entries up and down leaving
-                the selected one always centered
-        '''
-	increment_px_y = 29
+    '''
+            level_select_menu:
+            This menu moves all the entries up and down leaving
+            the selected one always centered
+    '''
+    increment_px_y = 29
 
-	if levels_menu.background != None:
-		sy = 0
-		if levels_menu.background_scroll == True:
-			sy = levels_menu.current * increment_px_y
-			window.blit(levels_menu.background,levels_menu.background.get_rect().move(0,-sy))
+    if levels_menu.background != None:
+        sy = 0
+        if levels_menu.background_scroll == True:
+            sy = levels_menu.current * increment_px_y
+            window.blit(levels_menu.background,levels_menu.background.get_rect().move(0,-sy))
 
-		y = 228 - (levels_menu.current * increment_px_y)
-		x = 150
-		color = yellow
+        y = 228 - (levels_menu.current * increment_px_y)
+        x = 150
+        color = yellow
 
-		for index,me in enumerate(levels_menu.options):
-			if levels_menu.current == index: color = levels_menu.select_color
-			else: color = levels_menu.color
+        for index,me in enumerate(levels_menu.options):
+            if levels_menu.current == index: color = levels_menu.select_color
+            else: color = levels_menu.color
 
-			if settings.isLevelCompleted(level_list.level_uuid(index)):
-				window.blit(tick_sprite,tick_sprite.get_rect().move(x-20,y))
+            if settings.isLevelCompleted(level_list.level_uuid(index)):
+                window.blit(tick_sprite,tick_sprite.get_rect().move(x-20,y))
 
-			render_font = FONT.render(me, 1, color)
-			window.blit(render_font, (x, y))
-			y += increment_px_y
+            render_font = FONT.render(me, 1, color)
+            window.blit(render_font, (x, y))
+            y += increment_px_y
 
 def pack_select_menu():
-        '''
-                pack_select_menu:
-                Actually does the same as level_select_menu
-                But the idea is to do that a little bit different
-        '''
-	increment_px_y = 29
+    '''
+            pack_select_menu:
+            Actually does the same as level_select_menu
+            But the idea is to do that a little bit different
+    '''
+    increment_px_y = 29
 
-	if packs_menu.background != None:
-		sy = 0
-		if packs_menu.background_scroll == True:
-			sy = packs_menu.current * increment_px_y
-			window.blit(packs_menu.background,packs_menu.background.get_rect().move(0,-sy))
+    if packs_menu.background != None:
+        sy = 0
+        if packs_menu.background_scroll == True:
+            sy = packs_menu.current * increment_px_y
+            window.blit(packs_menu.background,packs_menu.background.get_rect().move(0,-sy))
 
-		y = 228 - (packs_menu.current * increment_px_y)
-		x = 150
-		color = yellow
+        y = 228 - (packs_menu.current * increment_px_y)
+        x = 150
+        color = yellow
 
-		#assuming that lock and openlock are of the same size
-		lock_rect = locked_sprite.get_rect();
-		lock_rect_w = lock_rect[2]
+        #assuming that lock and openlock are of the same size
+        lock_rect = locked_sprite.get_rect();
+        lock_rect_w = lock_rect[2]
 
-		for index,me in enumerate(packs_menu.options):
-			draw_lock = True
-			if packs_menu.current == index:
-					if packlist.isPackOpen(packs_menu.current,settings.total_levels_cleared()):
-						color = packs_menu.select_color
-						draw_lock = False
-					else:
-						color = dimred
-			else:
-				if packlist.isPackOpen(index,settings.total_levels_cleared()):
-					color = packs_menu.color
-					draw_lock = False
-				else:
-					color = gray
+        for index,me in enumerate(packs_menu.options):
+            draw_lock = True
+            if packs_menu.current == index:
+                    if packlist.isPackOpen(packs_menu.current,settings.total_levels_cleared()):
+                        color = packs_menu.select_color
+                        draw_lock = False
+                    else:
+                        color = dimred
+            else:
+                if packlist.isPackOpen(index,settings.total_levels_cleared()):
+                    color = packs_menu.color
+                    draw_lock = False
+                else:
+                    color = gray
 
-			if draw_lock:
-				window.blit(locked_sprite,lock_rect.move(x-lock_rect_w,y))
-			else:
-				window.blit(openlock_sprite,lock_rect.move(x-lock_rect_w,y))
-
-
+            if draw_lock:
+                window.blit(locked_sprite,lock_rect.move(x-lock_rect_w,y))
+            else:
+                window.blit(openlock_sprite,lock_rect.move(x-lock_rect_w,y))
 
 
-			render_font = FONT.render(me, 1, color)
-			window.blit(render_font, (x, y))
-			y += increment_px_y
+
+
+            render_font = FONT.render(me, 1, color)
+            window.blit(render_font, (x, y))
+            y += increment_px_y
 
 
 #
@@ -1066,8 +1066,8 @@ def pack_select_menu():
 #
 def draw_menu(menu,sx=200,sy=160):
 
-	if menu.background != None:
-		window.blit(menu.background,menu.background.get_rect())
+    if menu.background != None:
+        window.blit(menu.background,menu.background.get_rect())
 
         x = sx
         y = sy
@@ -1084,24 +1084,24 @@ def draw_menu(menu,sx=200,sy=160):
 # Draws everything of the playing level screen
 #
 def playing_screen():
-	update_scene()
-	update_gui()
+    update_scene()
+    update_gui()
 
-	colision,cx,cy = status.level.stick_collides(stick);
-	if colision: wall_colision(cx,cy)
+    colision,cx,cy = status.level.stick_collides(stick);
+    if colision: wall_colision(cx,cy)
 
-	stick.rotate()
-	stick.movement()
+    stick.rotate()
+    stick.movement()
 
-	colision,cx,cy = status.level.stick_collides(stick);
-	if colision: wall_colision(cx,cy)
+    colision,cx,cy = status.level.stick_collides(stick);
+    if colision: wall_colision(cx,cy)
 
 
 def finish_level():
-	settings.add_cleared_level(status.level.get_uuid())
-	time = status.get_elapsed_time()
-	status.set_game_status(cStatus._STAT_GOAL)
-	records = status.level.save_record(settings.get_username(),time)
+    settings.add_cleared_level(status.level.get_uuid())
+    time = status.get_elapsed_time()
+    status.set_game_status(cStatus._STAT_GOAL)
+    records = status.level.save_record(settings.get_username(),time)
 
 
 
@@ -1117,101 +1117,101 @@ def finish_level():
 
 ###############################################
 def gaming_status(debug=False):
-	#Debug Purposes
-	if not status._DEBUG_COLLISION:
+    #Debug Purposes
+    if not status._DEBUG_COLLISION:
 
-		#Level Colision
-		colision,cx,cy = status.level.stick_collides(stick);
-		if colision: wall_colision(cx,cy)
+        #Level Colision
+        colision,cx,cy = status.level.stick_collides(stick);
+        if colision: wall_colision(cx,cy)
 
-		#Item colision
-		item_colisions()
+        #Item colision
+        item_colisions()
 
-		#Monster Colisions
-		monster_colisions()
+        #Monster Colisions
+        monster_colisions()
 
-	monster_logic()
-	playing_screen()
-	#debug_onscreen(colision)
-	#Unset invincibility when needed
-	status.unset_invincible_by_time()
+    monster_logic()
+    playing_screen()
+    #debug_onscreen(colision)
+    #Unset invincibility when needed
+    status.unset_invincible_by_time()
 
-	#check if goal
-	if status.level.stick_in_goal(stick):
-		if debug: return True
-		finish_level()
+    #check if goal
+    if status.level.stick_in_goal(stick):
+        if debug: return True
+        finish_level()
 
-	#check if dead
-	if status.lives <= 0:
-		if debug: return True
-		fancy_stick_death_animation()
+    #check if dead
+    if status.lives <= 0:
+        if debug: return True
+        fancy_stick_death_animation()
 
-	#Game Over
+    #Game Over
 
 def main_game():
         #Main Game Function
-	while 1:
-		for event in pygame.event.get(): event_handler(event)
-		window.fill(white)
+    while 1:
+        for event in pygame.event.get(): event_handler(event)
+        window.fill(white)
 
-		#Playing Level
-		if status.GAME_STAT == cStatus._STAT_GAMING:
-			gaming_status()
+        #Playing Level
+        if status.GAME_STAT == cStatus._STAT_GAMING:
+            gaming_status()
 
-		elif status.GAME_STAT == cStatus._STAT_GAMEOVER:
-			stick.fancy_rotation_death(0,10)
-			ingame_menu_screen(gover_menu,y=175)
+        elif status.GAME_STAT == cStatus._STAT_GAMEOVER:
+            stick.fancy_rotation_death(0,10)
+            ingame_menu_screen(gover_menu,y=175)
 
-			#Level Selection
-		elif status.GAME_STAT == cStatus._STAT_LEVELSEL:
-			level_selection_screen()
+            #Level Selection
+        elif status.GAME_STAT == cStatus._STAT_LEVELSEL:
+            level_selection_screen()
 
-		elif status.GAME_STAT == cStatus._STAT_PACKSEL:
-			pack_selection_screen()
+        elif status.GAME_STAT == cStatus._STAT_PACKSEL:
+            pack_selection_screen()
 
-		#Goal
-		elif status.GAME_STAT == cStatus._STAT_GOAL:
-			goal_screen()
+        #Goal
+        elif status.GAME_STAT == cStatus._STAT_GOAL:
+            goal_screen()
 
-		#After Goal, Level Records Screen
-		elif status.GAME_STAT == cStatus._STAT_LEVELRECORD:
-			records_screen()
+        #After Goal, Level Records Screen
+        elif status.GAME_STAT == cStatus._STAT_LEVELRECORD:
+            records_screen()
 
-		#Pause Menu
-		elif status.GAME_STAT == cStatus._STAT_PAUSE:
-			ingame_menu_screen(pause_menu,rotate=False,x=200,y=160)
+        #Pause Menu
+        elif status.GAME_STAT == cStatus._STAT_PAUSE:
+            ingame_menu_screen(pause_menu,rotate=False,x=200,y=160)
 
-		#Main Menu
-		elif status.GAME_STAT == cStatus._STAT_MAINMENU:
-			menu_screen(main_menu,rotate=False)
+        #Main Menu
+        elif status.GAME_STAT == cStatus._STAT_MAINMENU:
+            menu_screen(main_menu,rotate=False)
 
-		#settings Menu
-		elif status.GAME_STAT == cStatus._STAT_SETTINGS:
-			menu_screen(settings_menu,rotate=False)
+        #settings Menu
+        elif status.GAME_STAT == cStatus._STAT_SETTINGS:
+            menu_screen(settings_menu,rotate=False)
 
-		elif status.GAME_STAT == cStatus._STAT_NEWNAME:
-			newname_screen()
+        elif status.GAME_STAT == cStatus._STAT_NEWNAME:
+            newname_screen()
 
-		draw_transition() #transition always on top
+        draw_transition() #transition always on top
 
-		pygame.display.update()
-		clock.tick(FPS)
+        pygame.display.update()
+        clock.tick(FPS)
 
 def main_debug(filename):
-	load_level_filename(filename)
-	status.set_game_status(cStatus._STAT_GAMING)
-	finish = False
-	status._DEBUG_DEATH = True
-	while not finish:
-		for event in pygame.event.get(): event_handler(event)
-		finish = gaming_status(debug=True)
+    load_level_filename(filename)
+    status.set_game_status(cStatus._STAT_GAMING)
+    finish = False
+    status._DEBUG_DEATH = True
+    while not finish:
+        for event in pygame.event.get(): event_handler(event)
+        finish = gaming_status(debug=True)
 
-		pygame.display.update()
-		clock.tick(FPS)
+        pygame.display.update()
+        clock.tick(FPS)
 
 def print_message():
     import time
-    print """
+    print("""
 
 ##      ##    ###    ########  ##    ## #### ##    ##  ######
 ##  ##  ##   ## ##   ##     ## ###   ##  ##  ###   ## ##    ##
@@ -1231,14 +1231,15 @@ branch in a not so far away future.
 git pull origin pymunk
 
 pykurin will be started in 5 seconds
-    """
+    """)
     time.sleep(5)
 
 def main():
-	print_message()
-	if len(sys.argv) > 1:
-		main_debug(sys.argv[1])
-	else:
-		main_game()
+    print_message()
+    if len(sys.argv) > 1:
+        main_debug(sys.argv[1])
+    else:
+        main_game()
 
 if __name__ == '__main__': main()
+
