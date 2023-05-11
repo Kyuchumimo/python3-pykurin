@@ -133,9 +133,9 @@ class cLevel(pygame.sprite.Sprite):
         bouncers = content[content.index('[bouncers]\n')+1:content.index('[recovers]\n')]
         bouncer_list = []
         for dat in bouncers:
-            bl	= dat.rstrip("\n").split(":")
-            bx	= bl[0]
-            by	= bl[1]
+            bl  = dat.rstrip("\n").split(":")
+            bx  = bl[0]
+            by  = bl[1]
             rot = 0
             newbouncer = cItemBouncer.cItemBouncer(int(bx),int(by),rot)
             bouncer_list.append(newbouncer)
