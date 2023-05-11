@@ -34,7 +34,7 @@ class cLevelList:
             levelsuuid.append(self.get_specific_option(infile,'uuid'))
 
         tmp = zip(levelnames, levelfiles, levelsuuid)
-        tmp.sort()
+        tmp = sorted(tmp, key = lambda x: x[1])
         self.levelfiles = [lf for ln,lf,lu in tmp]
         self.levelnames = [ln for ln,lf,lu in tmp]
         self.levelsuuid = [lu for ln,lf,lu in tmp]
