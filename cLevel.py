@@ -232,7 +232,7 @@ class cLevel(pygame.sprite.Sprite):
 
         dbrecords = []
         #recover data if exists
-        if db.has_key("records"):
+        if "records" in db:
             dbrecords = db["records"]
 
         #check if a data drop is needed
