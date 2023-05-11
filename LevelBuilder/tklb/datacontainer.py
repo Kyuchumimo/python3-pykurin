@@ -1,6 +1,6 @@
 from pygame import Rect
 from pygame import image
-from ConfigParser import SafeConfigParser
+from configparser import SafeConfigParser
 import uuid
 import os
 import shutil
@@ -391,7 +391,7 @@ class LevelContainer:
         self.__init__(pykurindir = self.get_pykurindir())
         parser = SafeConfigParser()
         parser.read(full_path)
-        print full_path
+        print(full_path)
 
         imagefile = parser.get('options','background')
         colfilename = parser.get('options','collision')
@@ -507,7 +507,7 @@ class LevelContainer:
 
         stickx = self.sticks[0][0] -xpadding
         sticky = self.sticks[0][1] -ypadding
-        print stickx, sticky
+        print(stickx, sticky)
         f.write("startx:"+str(stickx)+"\n")
         f.write("starty:"+str(sticky)+"\n")
         goalx = self.goals[0][0] -xpadding
