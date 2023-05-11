@@ -4,7 +4,7 @@
 # base pykurin path etc.
 #
 #
-from Tkinter import *
+from tkinter import *
 
 from common_dialogs import *
 
