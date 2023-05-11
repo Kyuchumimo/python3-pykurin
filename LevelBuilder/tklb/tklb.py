@@ -1,4 +1,4 @@
-from Tkinter import *
+from tkinter import *
 import datacontainer
 import tkFileDialog, tkSimpleDialog, tkMessageBox
 from tksimplestatusbar import StatusBar
@@ -446,7 +446,7 @@ class PykurinLevelEditorUI(Frame):
     def delete_item(self, event):
         """Deletes the current selected item"""
         if not self.sitem:
-            print "No item selected"
+            print("No item selected")
             return
 
         itype = self.dataids[self.sitem][0]
@@ -557,7 +557,7 @@ Do you want to copy the files to the game levelpack tree?
 
     def f_new_level(self):
         """ Creates a new level with no file associated to it """
-        print "NEW LEVEL"
+        print("NEW LEVEL")
 
         # Force a new LevelContainer
         basep   = self.DC.get_basepath()
