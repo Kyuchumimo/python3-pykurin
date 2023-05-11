@@ -1,6 +1,6 @@
 from tkinter import *
 import datacontainer
-import tkFileDialog, tkSimpleDialog, tkMessageBox
+from tkinter import filedialog, simpledialog, messagebox
 from tksimplestatusbar import StatusBar
 
 from lbdialogs import tkLevelDialog, tkTextViewer, tkLevelPacksList
@@ -42,7 +42,7 @@ class PykurinLevelEditorUI(Frame):
         self.__guibuild_canvas()
 
         #Force the search of a pykurin directory
-        bdir = open_dir_chooser("Choose Pykurin Base Directory")
+        bdir = filedialog.askdirectory()
         if not bdir:
             sys.exit()
         if not datacontainer.isPykurinDirectory(bdir):
@@ -69,7 +69,7 @@ class PykurinLevelEditorUI(Frame):
         #ID dictionary between GUI and LevelContainer
         self.dataids = {}
 
-		#Window title
+        #Window title
         self.changeWindowTitle("TK pykurin Level builder")
 
 
@@ -601,7 +601,7 @@ Do you want to copy the files to the game levelpack tree?
             else:
                 error_message("ERROR","File %s NOT saved\n %s" % (fname, msg))
         else:
-	        error_message("Invalid Filename %s" % fname)
+            error_message("Invalid Filename %s" % fname)
 
     def f_save_level(self):
         if self._save_level_errcheck():
