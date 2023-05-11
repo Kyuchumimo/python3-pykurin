@@ -126,7 +126,7 @@ class cPal(pygame.sprite.Sprite):
 
 			cumx = (cumx / maximum) * 10
 			cumy = (cumy / maximum) * 10
-			print cumx, cumy, lastxy
+			print(cumx, cumy, lastxy)
 			return cumx, cumy
 
 	def previous_movement(self, pused=5):
@@ -297,3 +297,4 @@ class cPal(pygame.sprite.Sprite):
 				return True,col[0]+self.rect.x,col[1]+self.rect.y
 
 		else: return False,0,0
+
