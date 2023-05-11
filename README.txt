@@ -1,4 +1,4 @@
-Welcome to Pykurin
+Welcome to python3-pykurin
 -------------------------------
 This repo contains the source code of the game Pykurin.
 
