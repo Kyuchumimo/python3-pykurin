@@ -4,7 +4,7 @@
 #
 #
 
-import tkFileDialog, tkSimpleDialog, tkMessageBox
+from tkinter import filedialog, simpledialog, messagebox
 
 def open_file_chooser(naming, ftype="*", basepath = None):
     if not basepath:
@@ -29,24 +29,24 @@ def open_image_chooser(naming, basepath = None):
     return somefile or u''
 
 def open_dir_chooser(naming,ftype="*"):
-	try:
-		somedir = tkFileDialog.askdirectory(title=naming,mustexist=True)
-		return somedir
-	except:
-		return None
+    try:
+        somedir = tkFileDialog.askdirectory(title=naming,mustexist=True)
+        return somedir
+    except:
+        return None
 
 def save_file_chooser(naming, ftype=".prop"):
-	try:
-		somefile = tkFileDialog.asksaveasfilename(filetypes=[(naming, ftype)])
-		return somefile
-	except:
-		return None
+    try:
+        somefile = tkFileDialog.asksaveasfilename(filetypes=[(naming, ftype)])
+        return somefile
+    except:
+        return None
 
 def popup_message(title,text):
-    return tkMessageBox.showinfo(title,text)
+    return messagebox.showinfo(title,text)
 
 def error_message(title, text):
-    tkMessageBox.showerror(title, text)
+    messagebox.showerror(title, text)
 
 def show_disclaimer():
     """
